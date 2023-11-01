@@ -1,4 +1,4 @@
-Brenda: Vamos criar a página principal do menu em HTML. Ela terá as opções "Jogar", "Créditos" e "Acessar Tabela de Classificação". ✅
+Brenda: Vamos criar o arquivo consulta_dados.php, nele deveremos consultar o nome, pontuação e classificação de cada jogador. 
 
 
 Diogo: Ficará encarregado do estilo CSS para a página do menu principal. Vamos manter o padrão semelhante ao CSS do arquivo App.css, 
@@ -7,8 +7,7 @@ e também podemos organizar isso no Trello.
 Douglas: Vamos estilizar a página classificacao.html com um design que siga o mesmo estilo do arquivo index.css.
 
 Isaac: Vamos criar a página de classificação (classificacao.html). Ela irá buscar os dados no arquivo consulta_dados.php e 
-exibir a classificação em ordem crescente. ✅
-Ajustar conexão com o banco de dados e a página.
+exibir a classificação em ordem crescente.
 
 João Victor Martins: Sua tarefa é finalizar a configuração do questionario.js. Vamos implementar o sistema de inserção de dados na t
 abela usando o arquivo inserir_dados.php e também cuidar do processo de perguntas e respostas.

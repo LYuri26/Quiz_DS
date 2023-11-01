@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Classificacao from './components/classificacao';
-import Creditos from './pages/creditos';
-import Questionario from './components/questionario';
-import Menu from './pages/menu';
+import Classificacao from '../components/classificacao';
+import Creditos from './creditos';
+import Questionario from '../components/questionario';
+import Menu from './menu';
 
 function App() {
   return (
