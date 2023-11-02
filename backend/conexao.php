@@ -1,14 +1,16 @@
 <?php
+
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "quizds";
+$dbname = "quizbiblioteca";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Conexão falhou: " . $conn->connect_error);
-} else {
+try {
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Conexão bem-sucedida!";
+} catch (PDOException $e) {
+    echo "Conexão falhou: " . $e->getMessage();
 }
+
 ?>
