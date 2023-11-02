@@ -9,11 +9,16 @@ const Questionario = () => {
   );
   const [pontuacao, setPontuacao] = useState(0);
   const [jogoFinalizado, setJogoFinalizado] = useState(false);
+  const [envioRealizado, setEnvioRealizado] = useState(false);
 
   const handleClickOpcao = (index, valor) => {
     if (nome.trim() !== "" && !jogoFinalizado) {
       const novaResposta = [...respostas];
       novaResposta[perguntaAtual] = valor;
+
+      // Adiciona a pontuação da pergunta à pontuação total
+      setPontuacao((prevPontuacao) => prevPontuacao + valor);
+
       setRespostas(novaResposta);
       if (perguntaAtual + 1 < perguntas.length) {
         setPerguntaAtual(perguntaAtual + 1);
@@ -24,26 +29,36 @@ const Questionario = () => {
   };
 
   const finalizarJogo = (novaResposta) => {
-    if (Array.isArray(novaResposta) && nome.trim() !== "") {
+    if (Array.isArray(novaResposta) && nome.trim() !== "" && !envioRealizado) {
       let pontuacaoFinal = novaResposta.reduce(
-        (total, valor) => total + valor,
+        (total, valor) => (valor !== null ? total + valor : total),
         0
       );
       setPontuacao(pontuacaoFinal);
+      setRespostas(novaResposta.map((valor) => (valor !== null ? valor : 0)));
       setJogoFinalizado(true);
+      setEnvioRealizado(true);
+
+      setTimeout(() => {
+        reiniciarJogo();
+      }, 2000);
     }
   };
 
-  const portaPhp = process.env.REACT_APP_PORTA_PHP || 3000;
   const enviarDados = () => {
     const formData = new FormData();
     formData.append("nomeJogador", nome);
     formData.append("pontuacao", pontuacao);
 
-    fetch(`http://localhost:${portaPhp}/backend/inserir_dados.php`, {
-      method: "POST",
-      body: formData,
-    })
+    fetch(
+      `http://localhost:${
+        process.env.REACT_APP_PORTA_PHP || 3000
+      }/backend/inserir_dados.php`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -53,26 +68,46 @@ const Questionario = () => {
         console.error("Erro:", error);
       });
   };
+  const reiniciarPagina = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 5000);
+  };
 
   const reiniciarJogo = () => {
-    setNome("");
-    setPerguntaAtual(0);
-    setRespostas(Array(perguntas.length).fill(null));
-    setPontuacao(0);
-    setJogoFinalizado(false);
+    if (!envioRealizado) {
+      enviarDados(); // Envie os dados antes de reiniciar o jogo
+      setNome("");
+      setPerguntaAtual(0);
+      setRespostas(Array(perguntas.length).fill(null));
+      setPontuacao(0);
+      setJogoFinalizado(false);
+      setEnvioRealizado(false);
+      reiniciarPagina(); // Inicia o cronômetro para reiniciar a página
+    }
   };
 
   return (
     <form>
       <div>
-        <label>
-          Nome:
-          <input
-            type="text"
-            value={nome}
-            onChange={(e) => setNome(e.target.value)}
-          />
-        </label>
+        {jogoFinalizado ? (
+          <div>
+            <h2>Jogo Finalizado!</h2>
+            <p>Pontuação Total: {pontuacao}</p>
+            <button type="button" onClick={reiniciarJogo}>
+              Voltar ao Início
+            </button>
+          </div>
+        ) : (
+          <label>
+            Nome:
+            <input
+              type="text"
+              value={nome}
+              onChange={(e) => setNome(e.target.value)}
+            />
+          </label>
+        )}
       </div>
       {perguntaAtual < perguntas.length && (
         <div>
@@ -94,22 +129,13 @@ const Questionario = () => {
           </div>
         </div>
       )}
-      {jogoFinalizado ? (
-        <div>
-          <h2>Jogo Finalizado!</h2>
-          <p>Pontuação Total: {pontuacao}</p>
-          <button type="button" onClick={enviarDados}>
-            Enviar Dados
-          </button>
-          <button type="button" onClick={reiniciarJogo}>
-            Voltar ao Início
-          </button>
-        </div>
-      ) : (
-        <button type="button" onClick={finalizarJogo} disabled={!nome.trim()}>
-          Finalizar Jogo
-        </button>
-      )}
+      <button
+        type="button"
+        onClick={() => finalizarJogo(respostas)}
+        disabled={!nome.trim() || jogoFinalizado}
+      >
+        Finalizar Jogo
+      </button>
     </form>
   );
 };
