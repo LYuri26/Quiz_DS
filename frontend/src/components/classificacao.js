@@ -10,7 +10,7 @@ function Classificacao() {
     fetch(
       `http://localhost:${
         process.env.REACT_APP_PORTA_PHP || 3000
-      }/backend/inserir_dados.php`
+      }/backend/consulta_dados.php`
     )
       .then((response) => response.json())
       .then((data) => setDados(data))
@@ -24,8 +24,9 @@ function Classificacao() {
           <img src={logo} alt="Logo SENAI" className="logo-senai" />
         </Link>
       </header>
+      <caption>PÓDIO</caption>
+
       <table>
-        <caption>PÓDIO</caption>
         <thead>
           <tr>
             <th>Posição</th>
@@ -42,6 +43,13 @@ function Classificacao() {
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </tfoot>
       </table>
       <footer>
         Jogo desenvolvido pela turma de Desenvolvimento de Sistemas Trilhas de

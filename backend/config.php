@@ -11,8 +11,6 @@ $backend_path = "http://{$_SERVER['HTTP_HOST']}:{$_SERVER['SERVER_PORT']}/backen
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Conexão bem-sucedida!";
 } catch (PDOException $e) {
     die("Conexão falhou: " . $e->getMessage());
 }
-?>

@@ -54,7 +54,9 @@ const Questionario = () => {
     formData.append("pontuacao", pontuacao);
 
     fetch(
-      `http://localhost:${process.env.REACT_APP_PORTA_PHP || 3000}/backend/inserir_dados.php`,
+      `http://localhost:${
+        process.env.REACT_APP_PORTA_PHP || 3000
+      }/backend/inserir_dados.php`,
       {
         method: "POST",
         body: formData,
@@ -115,6 +117,7 @@ const Questionario = () => {
                 <input
                   type="text"
                   value={nome}
+                  maxLength="40" // Adicionado para limitar para 20 caracteres
                   onChange={(e) => setNome(e.target.value)}
                 />
               </label>

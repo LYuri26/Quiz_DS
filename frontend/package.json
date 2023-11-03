@@ -33,9 +33,7 @@
     ]
   },
   "scripts": {
-    "start": "concurrently \"php -S localhost:3000 -t ../backend\" \"react-scripts start\"",
-    "start:react": "react-scripts start",
-    "start:php": "php -S localhost:3000 -t backend",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
