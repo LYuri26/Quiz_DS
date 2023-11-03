@@ -1,0 +1,43 @@
+.table-container {
+    border-radius: 10px;
+    overflow: hidden;
+    width: 70%; /* Defina a largura desejada */
+    margin: 0 auto; /* Centraliza a tabela */
+  }
+  
+  table {
+    width: 60%;
+    border-collapse: collapse;
+  }
+  
+  caption {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  thead {
+    background-color: #003f72;
+    color: #fff;
+  }
+  
+  thead th, tbody td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  tbody tr:nth-child(odd) {
+    background-color: #003f72;
+    color: #fff;
+  }
+  
+  tbody tr:nth-child(even) {
+    background-color: #fff;
+    color: #003f72;
+  }
+  
+  tbody tr:hover {
+    background-color: #ffbf00;
+    color: #003f72;
+  }
+  

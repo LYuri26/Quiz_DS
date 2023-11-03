@@ -1,41 +1,50 @@
-import "../styles/questionario.css";
+import "../styles/classificacao.css";
 import logo from "../images/Senai.png";
 import { Link } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 function Classificacao() {
+  const [dados, setDados] = useState([]);
+
   useEffect(() => {
-    fetch("http://localhost:3000/backend/consulta_dados.php")
+    fetch(`http://localhost:3000/backend/consulta_dados.php`)
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => setDados(data))
       .catch((error) => console.error("Erro:", error));
   }, []);
 
   return (
-    <body>
     <div className="menu-container">
       <header>
         <Link to="/">
           <img src={logo} alt="Logo SENAI" className="logo-senai" />
         </Link>
       </header>
-      <caption>PÓDIO</caption>
-      <body>
-        <table>
+      <table>
+        <caption>PÓDIO</caption>
+        <thead>
           <tr>
-            <th>Classificação</th>
+            <th>Posição</th>
             <th>Nome</th>
             <th>Pontuação</th>
           </tr>
-        </table>
-      </body>
+        </thead>
+        <tbody>
+          {dados.map((item, index) => (
+            <tr key={item.id}>
+              <td>{item.posicao}</td>
+              <td>{item.nome}</td>
+              <td>{item.pontuacao}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <footer>
         Jogo desenvolvido pela turma de Desenvolvimento de Sistemas Trilhas de
         Futuro 02/2022.
       </footer>
     </div>
-    </body>
-
   );
 }
+
 export default Classificacao;
