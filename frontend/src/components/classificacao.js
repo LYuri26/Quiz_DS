@@ -7,7 +7,11 @@ function Classificacao() {
   const [dados, setDados] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/backend/consulta_dados.php`)
+    fetch(
+      `http://localhost:${
+        process.env.REACT_APP_PORTA_PHP || 3000
+      }/backend/inserir_dados.php`
+    )
       .then((response) => response.json())
       .then((data) => setDados(data))
       .catch((error) => console.error("Erro:", error));

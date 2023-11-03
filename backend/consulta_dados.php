@@ -29,4 +29,3 @@ if ($result->rowCount() > 0) {
 }
 
 $pdo = null;
-?>
