@@ -15,47 +15,48 @@ function Classificacao() {
       .then((response) => response.json())
       .then((data) => setDados(data))
       .catch((error) => console.error("Erro:", error));
-  }, []);
+  }, []); // Array de dependências vazio, executa apenas uma vez.
 
   return (
-    <div className="menu-container">
-      <header>
-        <Link to="/">
-          <img src={logo} alt="Logo SENAI" className="logo-senai" />
-        </Link>
-      </header>
-      <caption>PÓDIO</caption>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Posição</th>
-            <th>Nome</th>
-            <th>Pontuação</th>
-          </tr>
-        </thead>
-        <tbody>
-          {dados.map((item, index) => (
-            <tr key={item.id}>
-              <td>{item.posicao}</td>
-              <td>{item.nome}</td>
-              <td>{item.pontuacao}</td>
+    <body>
+      <div className="menu-container">
+        <header>
+          <Link to="/">
+            <img src={logo} alt="Logo SENAI" className="logo-senai" />
+          </Link>
+        </header>
+        <h1>Pódio</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Posição</th>
+              <th>Nome</th>
+              <th>Pontuação</th>
             </tr>
-          ))}
-        </tbody>
-        <tfoot>
-          <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-          </tr>
-        </tfoot>
-      </table>
-      <footer>
-        Jogo desenvolvido pela turma de Desenvolvimento de Sistemas Trilhas de
-        Futuro 02/2022.
-      </footer>
-    </div>
+          </thead>
+          <tbody>
+            {dados.map((item, index) => (
+              <tr key={item.id}>
+                <td>{item.posicao}</td>
+                <td>{item.nome}</td>
+                <td>{item.pontuacao}</td>
+              </tr>
+            ))}
+          </tbody>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
+        <footer>
+          Jogo desenvolvido pela turma de Desenvolvimento de Sistemas Trilhas de
+          Futuro 02/2022.
+        </footer>
+      </div>
+    </body>
   );
 }
 
