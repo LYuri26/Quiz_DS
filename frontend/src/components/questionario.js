@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import perguntas from "./perguntas";
+import "../styles/questionario.css";
+import logo from "../images/Senai.png";
+import { Link } from "react-router-dom";
 
 const Questionario = () => {
   const [nome, setNome] = useState("");
@@ -88,55 +91,75 @@ const Questionario = () => {
   };
 
   return (
-    <form>
-      <div>
-        {jogoFinalizado ? (
-          <div>
+    <body>
+    <div className="menu-container">
+     <header>
+        <Link to="/">
+          <img src={logo} alt="Logo SENAI" className="logo-senai" />
+        </Link>
+      </header>
+      <h1>Quiz Semana da Biblioteca</h1>
+      {jogoFinalizado ? (
+        <div className="overlay">
+          <div className="centered">
             <h2>Jogo Finalizado!</h2>
             <p>Pontuação Total: {pontuacao}</p>
             <button type="button" onClick={reiniciarJogo}>
               Voltar ao Início
             </button>
           </div>
-        ) : (
-          <label>
-            Nome:
-            <input
-              type="text"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-            />
-          </label>
-        )}
-      </div>
-      {perguntaAtual < perguntas.length && (
-        <div>
-          <p>{perguntas[perguntaAtual].pergunta}</p>
-          <div>
-            {perguntas[perguntaAtual].opcoes.map((opcao, index) => (
-              <button
-                key={index}
-                type="button"
-                onClick={() => handleClickOpcao(index, opcao.valor)}
-                style={{
-                  backgroundColor:
-                    respostas[perguntaAtual] === index ? "#4CAF50" : "#ffffff",
-                }}
-              >
-                {opcao.texto}
-              </button>
-            ))}
-          </div>
         </div>
+      ) : (
+        <form className="overlay">
+          <div className="centered">
+            <label>
+              Nome:
+              <input
+                type="text"
+                value={nome}
+                onChange={(e) => setNome(e.target.value)}
+              />
+            </label>
+          </div>
+          {perguntaAtual < perguntas.length && (
+            <div className="centered">
+              <p>{perguntas[perguntaAtual].pergunta}</p>
+              <div>
+                {perguntas[perguntaAtual].opcoes.map((opcao, index) => (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => handleClickOpcao(index, opcao.valor)}
+                    style={{
+                      backgroundColor:
+                        respostas[perguntaAtual] === index
+                          ? "#4CAF50"
+                          : "#ffffff",
+                    }}
+                  >
+                    {opcao.texto}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          <button
+            type="button"
+            onClick={() => finalizarJogo(respostas)}
+            disabled={!nome.trim() || jogoFinalizado}
+          >
+            Finalizar Jogo
+          </button>
+        </form>
       )}
-      <button
-        type="button"
-        onClick={() => finalizarJogo(respostas)}
-        disabled={!nome.trim() || jogoFinalizado}
-      >
-        Finalizar Jogo
-      </button>
-    </form>
+
+      <footer>
+        Jogo desenvolvido pela turma de Desenvolvimento de Sistemas Trilhas de
+        Futuro 02/2022.
+      </footer>
+    </div>
+    </body>
+
   );
 };
 

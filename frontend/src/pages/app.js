@@ -4,6 +4,8 @@ import Classificacao from '../components/classificacao';
 import Creditos from './creditos';
 import Questionario from '../components/questionario';
 import Menu from './menu';
+import "../styles/index.css";
+
 
 function App() {
   return (
