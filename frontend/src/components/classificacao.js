@@ -38,5 +38,4 @@ function Classificacao() {
 
   );
 }
-
 export default Classificacao;
