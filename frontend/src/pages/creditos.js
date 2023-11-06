@@ -1,7 +1,8 @@
+import '../styles/creditos.css'
 import React from 'react';
 
 function Creditos() {
-    return <div> 
+    return <div>
         <body>
             <h1>Créditos</h1>
             <h2>Quem Somos Nós</h2>
@@ -24,8 +25,9 @@ function Creditos() {
 
             <h2>Orientador</h2>
             <ul>
-                <li>Lenon Yuri Silva</li>
+                <li><a href="https://github.com/LYuri26">Lenon Yuri Silva</a></li>
             </ul>
+
             <p>Esse Quiz foi desenvolvido com o objetivo de testar o seu conhecimento</p>
         </body>
 

@@ -1,12 +1,50 @@
 <?php
 
-header("Access-Control-Allow-Origin: *"); // Permite requisições de qualquer origem
+header("Access-Control-Allow-Origin: *");
 
+include_once 'conexao.php';
+
+$backend_path = "http://localhost:3000/backend/";
+
+try {
+    
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    echo json_encode(array('status' => 'error', 'message' => 'Conexão falhou: ' . $e->getMessage()));
+    exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nomeJogador = isset($_POST['nomeJogador']) ? $_POST['nomeJogador'] : null;
+    $classificacao = isset($_POST['classificacao']) ? $_POST['classificacao'] : null;
+    $pontuacao = isset($_POST['pontuacao']) ? $_POST['pontuacao'] : null;
+
+    if ($nomeJogador !== null && $pontuacao !== null && $classificacao !== null) {
+        try {
+            $stmt = $pdo->prepare('INSERT INTO jogadores (nome, classificacao, pontuacao) VALUES (:nome, :classificacao, :pontuacao)');
+            $stmt->bindParam(':nome', $nomeJogador);
+            $stmt->bindParam(':classificacao', $classificacao);
+            $stmt->bindParam(':pontuacao', $pontuacao);
+
+            $stmt->execute();
+
+            exit();
+        } catch (PDOException $e) {
+        }
+    } else {
+    }
+} else {
+}
+
+$pdo = null; // Fecha a conexão
+
+/*
+header("Access-Control-Allow-Origin: *"); // Permite requisições de qualquer origem
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "quizds";
-
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -14,7 +52,6 @@ try {
 } catch (PDOException $e) {
     echo "Conexão falhou: " . $e->getMessage();
 }
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nomeJogador = isset($_POST['nomeJogador']) ? $_POST['nomeJogador'] : null;
     $pontuacao = isset($_POST['pontuacao']) ? $_POST['pontuacao'] : null;
@@ -38,6 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo json_encode(array('status' => 'error', 'message' => 'Método de requisição inválido'));
 }
-
 $pdo = null; // Fecha a conexão
+
+*/
 ?>

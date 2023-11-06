@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #464141;
+
+
+}
+
+.caixa {
+    width: 100vw; /* Largura da caixa */
+    height: 200px; /* Altura da caixa */
+    background-color: #003f72; /* Cor de fundo da caixa */
+    border: 1px solid #000; /* Borda da caixa */
+    text-align: center; /* Centraliza o texto na caixa */
+    padding: 20px; /* Espaçamento interno da caixa */
+}
