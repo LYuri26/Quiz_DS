@@ -1,16 +1,16 @@
 <?php
 include_once 'conexao.php';
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
-header("Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token");
 
+$backend_path = "http://localhost:3000/backend/";
 
-$backend_path = "http://{$_SERVER['HTTP_HOST']}:{$_SERVER['SERVER_PORT']}/backend/";
+// Criar a conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-    die("Conexão falhou: " . $e->getMessage());
+// Verificar a conexão
+if ($conn->connect_error) {
+    die("Conexão falhou: " . $conn->connect_error);
+} else {
+    echo "Conexão bem-sucedida!";
 }
+?>

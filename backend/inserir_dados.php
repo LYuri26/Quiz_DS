@@ -5,7 +5,7 @@ header("Access-Control-Allow-Origin: *"); // Permite requisições de qualquer o
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "quizbiblioteca";
+$dbname = "quizds";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
