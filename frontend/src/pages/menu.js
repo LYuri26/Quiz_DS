@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import "../styles/index.css";
+import logo from "../images/Senai.png";
+
 
 function Menu() {
   const [setDados] = useState([]);
 
   useEffect(() => {
     fetch(
-      `http://localhost:${
-        process.env.REACT_APP_PORTA_PHP || 3000
+      `http://localhost:${process.env.REACT_APP_PORTA_PHP || 3000
       }/backend/criar_tabela.php`
     )
       .then((response) => response.json())
@@ -20,7 +21,9 @@ function Menu() {
 
   return (
     <div className="menu-container">
-      <header></header>
+      <header>
+          <img src={logo} alt="Logo SENAI" className="logo-senai" />
+      </header>      <header></header>
       <div className="menu-button-container">
         <NavLink to="/questionario" className="menu-button">
           Questionário
