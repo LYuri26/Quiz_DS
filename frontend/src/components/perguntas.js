@@ -63,6 +63,7 @@ const perguntas = ([{
   ],
 },
 
+<<<<<<< Updated upstream
 {
   pergunta: "Qual proprieadade CSS controla o tamanho do texto?",
   opcoes: [
@@ -194,5 +195,83 @@ const perguntas = ([{
 },
 
 ]
+=======
+  {
+    pergunta: "Qual proprieadade CSS controla o tamanho do texto?", // Define a sétima pergunta
+    opcoes: [ // Define as opções para a sétima pergunta
+        { texto: "Font-size", valor: 10 }, // A resposta correta tem um valor de 10
+        { texto: "Text-size", valor: 0 },
+        { texto: "Text-height", valor: 0 },
+        { texto: "Font-height", valor: 0 },
+      ],
+    },
+    
+    {
+      pergunta: "Como se aplica uma borda a um elemento em CSS?", // Define a oitava pergunta
+      opcoes: [ // Define as opções para a oitava pergunta
+          { texto: "border-style", valor: 0 },
+          { texto: "border()", valor: 10 }, // A resposta correta tem um valor de 10
+          { texto: "border-color", valor: 0 },
+          { texto: " border(-)", valor: 0 },
+        ]
+      },
+      
+      {
+  pergunta: "Qual propriedade CSS é usada para alterar a cor do texto?", // Define a sexta pergunta
+    opcoes: [ // Define as opções para a quarta pergunta
+      { texto: "color", valor: 10 }, // A resposta correta tem um valor de 10
+      { texto: "font-color", valor: 0 },
+      { texto: "text-color", valor: 0 }, 
+      { texto: "font-style", valor: 0 },
+    ],
+  },
+
+  {
+    pergunta: "Qual elemento HTML é usado para criar um link para outra página?", // Define a sexta pergunta
+      opcoes: [ // Define as opções para a quarta pergunta
+        { texto: "<link>", valor: 0 }, 
+        { texto: "<a>", valor: 10 }, // A resposta correta tem um valor de 10
+        { texto: "<url>", valor: 0 }, 
+        { texto: "<anchor>", valor: 0 },
+      ],
+    },
+
+    {
+      pergunta: "Qual é o elemento usado para definir o título de uma página em HTML?", // Define a sexta pergunta
+        opcoes: [ // Define as opções para a quarta pergunta
+          { texto: "<title>", valor: 10 }, // A resposta correta tem um valor de 10
+          { texto: "<header>", valor: 0 }, 
+          { texto: "<h1>", valor: 0 }, 
+          { texto: "<heading>", valor: 0 },
+        ],
+      },
+
+      {
+        pergunta: "Qual comando SQL é usado para criar uma nova tabela em um banco de dados?", // Define a sexta pergunta
+          opcoes: [ // Define as opções para a quarta pergunta
+            { texto: "CREATE TABLE", valor: 10 }, // A resposta correta tem um valor de 10
+            { texto: "NEW TABLE", valor: 0 }, 
+            { texto: "ADD TABLE", valor: 0 }, 
+            { texto: "MAKE TABLE", valor: 0 },
+          ],
+        },
+
+        {
+          pergunta: "Qual tipo de dado é usado para armazenar datas em um banco de dados?", // Define a sexta pergunta
+            opcoes: [ // Define as opções para a quarta pergunta
+              { texto: "DATE", valor: 10 }, // A resposta correta tem um valor de 10
+              { texto: "TEXT", valor: 0 }, 
+              { texto: "NUMBER", valor: 0 }, 
+              { texto: "TIME", valor: 0 },
+            ],
+          },
+
+
+    ]
+>>>>>>> Stashed changes
 );
+
+
+
+
 export default perguntas;
